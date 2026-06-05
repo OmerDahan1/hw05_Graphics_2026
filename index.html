@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>HW5 - Bowling Alley</title>
+		<style>
+			body { margin: 0; overflow: hidden; font-family: Arial, sans-serif; }
+			body > div:not(#ui-layer) {
+				display: none !important;
+			}
+			/* UI Container layout wrapper */
+			#ui-layer {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				pointer-events: none; /* Let clicks pass through to orbit camera canvas */
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding: 20px;
+				box-sizing: border-box;
+			}
+
+			.hud-panel {
+				background: rgba(44, 62, 80, 0.9);
+				color: white;
+				padding: 15px;
+				border-radius: 6px;
+				box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+				pointer-events: auto; /* Re-enable pointer events for interaction elements */
+			}
+
+			/* 10-Frame Scorecard Container Layout Grid */
+			.scorecard {
+				align-self: center;
+				width: 80%;
+				max-width: 800px;
+				margin-top: 10px;
+			}
+
+			.score-table {
+				width: 100%;
+				border-collapse: collapse;
+				text-align: center;
+			}
+
+			.score-table th, .score-table td {
+				border: 1px solid #bdc3c7;
+				padding: 4px;
+			}
+
+			.score-table th { background: #34495e; font-size: 12px; }
+
+			.box-splits {
+				display: flex;
+				justify-content: space-around;
+				border-bottom: 1px solid #bdc3c7;
+				min-height: 20px;
+				font-weight: bold;
+			}
+
+			.running-score {
+				padding-top: 4px;
+				min-height: 20px;
+				font-size: 14px;
+			}
+
+			/* Controls instructions HUD box */
+			.controls-hud {
+				align-self: flex-start;
+				max-width: 250px;
+				margin-bottom: 10px;
+			}
+
+			.controls-hud h4 { margin: 0 0 5px 0; color: #3498db; }
+			.controls-hud p { margin: 3px 0; font-size: 13px; }
+		</style>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
+	</head>
+	<body>
+		<div id="ui-layer">
+			<div class="hud-panel scorecard">
+				<table class="score-table">
+					<thead>
+						<tr>
+							<th>F1</th><th>F2</th><th>F3</th><th>F4</th><th>F5</th>
+							<th>F6</th><th>F7</th><th>F8</th><th>F9</th><th>F10</th>
+							<th>Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><div class="box-splits"><span></span><span></span></div><div class="running-score">-</div></td>
+							<td><div class="box-splits"><span></span><span></span></div><div class="running-score">-</div></td>
+							<td><div class="box-splits"><span></span><span></span></div><div class="running-score">-</div></td>
+							<td><div class="box-splits"><span></span><span></span></div><div class="running-score">-</div></td>
+							<td><div class="box-splits"><span></span><span></span></div><div class="running-score">-</div></td>
+							<td><div class="box-splits"><span></span><span></span></div><div class="running-score">-</div></td>
+							<td><div class="box-splits"><span></span><span></span></div><div class="running-score">-</div></td>
+							<td><div class="box-splits"><span></span><span></span></div><div class="running-score">-</div></td>
+							<td><div class="box-splits"><span></span><span></span></div><div class="running-score">-</div></td>
+							<td><div class="box-splits"><span></span><span></span><span></span></div><div class="running-score">-</div></td>
+							<td style="font-size: 16px; font-weight: bold; color: #f1c40f;">0</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="hud-panel controls-hud">
+				<h4>Lane Controls</h4>
+				<p><b>O Key</b>: Toggle Orbit Camera</p>
+				<p style="color: #bdc3c7; font-size: 11px;">Interactive physics launching arriving in HW06!</p>
+			</div>
+		</div>
+		<script src="src/hw5.js" type="module"></script>
+
+	</body>
+</html>
