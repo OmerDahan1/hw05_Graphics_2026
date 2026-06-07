@@ -62,17 +62,64 @@ function createBowlingLane() {
   scene.add(foulLine);
 
   const gutterGeometry = new THREE.BoxGeometry(0.4, 0.15, 60);
-  const gutterMaterial = new THREE.MeshPhongMaterial({ color: 0x2c3e50, shininess: 20 });
+  const gutterMaterial = new THREE.MeshPhongMaterial({ color: 0x111115, shininess: 10 });
   
   const leftGutter = new THREE.Mesh(gutterGeometry, gutterMaterial);
-  leftGutter.position.set(-1.95, -0.05, -30); 
+  leftGutter.position.set(-1.95, -0.08, -30); 
   leftGutter.receiveShadow = true;
   scene.add(leftGutter);
 
   const rightGutter = new THREE.Mesh(gutterGeometry, gutterMaterial);
-  rightGutter.position.set(1.95, -0.05, -30);
+  rightGutter.position.set(1.95, -0.08, -30);
   rightGutter.receiveShadow = true;
   scene.add(rightGutter);
+
+  const dividerGeometry = new THREE.BoxGeometry(0.08, 0.3, 60);
+  const dividerMaterial = new THREE.MeshPhongMaterial({ color: 0x7f8c8d, shininess: 30 });
+
+  const leftDivider = new THREE.Mesh(dividerGeometry, dividerMaterial);
+  leftDivider.position.set(-2.19, 0.15, -30);
+  leftDivider.castShadow = true;
+  leftDivider.receiveShadow = true;
+  scene.add(leftDivider);
+
+  const rightDivider = new THREE.Mesh(dividerGeometry, dividerMaterial);
+  rightDivider.position.set(2.19, 0.15, -30);
+  rightDivider.castShadow = true;
+  rightDivider.receiveShadow = true;
+  scene.add(rightDivider);
+
+  const bumperGeometry = new THREE.BoxGeometry(0.12, 0.04, 60);
+  const bumperMaterial = new THREE.MeshPhongMaterial({ color: 0x333337, shininess: 70 });
+
+  const leftBumper = new THREE.Mesh(bumperGeometry, bumperMaterial);
+  leftBumper.position.set(-1.75, 0.26, -30);
+  leftBumper.castShadow = true;
+  leftBumper.receiveShadow = true;
+  scene.add(leftBumper);
+
+  const rightBumper = new THREE.Mesh(bumperGeometry, bumperMaterial);
+  rightBumper.position.set(1.75, 0.26, -30);
+  rightBumper.castShadow = true;
+  rightBumper.receiveShadow = true;
+  scene.add(rightBumper);
+
+  const postGeometry = new THREE.CylinderGeometry(0.012, 0.012, 0.28, 8);
+  const postMaterial = new THREE.MeshPhongMaterial({ color: 0x888c8d, shininess: 100 });
+
+  for (let z = -2; z >= -58; z -= 4) {
+    const leftPost = new THREE.Mesh(postGeometry, postMaterial);
+    leftPost.position.set(-1.75, 0.12, z);
+    leftPost.castShadow = true;
+    leftPost.receiveShadow = true;
+    scene.add(leftPost);
+
+    const rightPost = new THREE.Mesh(postGeometry, postMaterial);
+    rightPost.position.set(1.75, 0.12, z);
+    rightPost.castShadow = true;
+    rightPost.receiveShadow = true;
+    scene.add(rightPost);
+  }
 
   const pinDeckGeom = new THREE.PlaneGeometry(3.5, 5);
   const pinDeckMat = new THREE.MeshPhongMaterial({ color: 0xB8860B, shininess: 50 });
@@ -99,13 +146,13 @@ function createBowlingLane() {
   const arrowPositionsX = [-0.9, -0.45, 0, 0.45, 0.9];
   arrowPositionsX.forEach((x, index) => {
     const arrowShape = new THREE.Shape();
-    arrowShape.moveTo(0, 0.15);
-    arrowShape.lineTo(0.06, -0.15);
-    arrowShape.lineTo(-0.06, -0.15);
-    arrowShape.lineTo(0, 0.15);
+    arrowShape.moveTo(0, 0.25);
+    arrowShape.lineTo(0.09, -0.25);
+    arrowShape.lineTo(-0.09, -0.25);
+    arrowShape.lineTo(0, 0.25);
 
     const arrowGeom = new THREE.ShapeGeometry(arrowShape);
-    const arrowMat = new THREE.MeshBasicMaterial({ color: 0x444444, side: THREE.DoubleSide });
+    const arrowMat = new THREE.MeshBasicMaterial({ color: 0x111111, side: THREE.DoubleSide });
     const arrowMesh = new THREE.Mesh(arrowGeom, arrowMat);
     arrowMesh.rotation.x = degrees_to_radians(-90);
     
